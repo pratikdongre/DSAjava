@@ -3,15 +3,19 @@ import java.util.Scanner;
 
 public class InsertionUsingRecursion {
 
-    public void insertionrec(int arr[],int ele,int n){
+    public static void insertionrec(int arr[],int ele,int n){
         if(ele ==n) return;
-        for(int i=0;i<arr.length;i++){
-            if(arr[ele] > arr[i]){
-                int temp = arr[i];
-                arr[i] = arr[ele];
-                arr[ele] = temp;
-            }
+        
+        int j = ele;
+
+        while(j>0 && arr[j-1] >arr[j]){
+            int temp = arr[j-1];
+            arr[j-1] = arr[j];
+            arr[j] = temp;
+            j--;
         }
+
+        insertionrec(arr, ele+1, n);
     }
 
 public static void main(String[] args){
@@ -22,8 +26,9 @@ public static void main(String[] args){
         arr[i] = sc.nextInt();
     }
 
-    insertionrec(arr,0,n);
+    InsertionUsingRecursion.insertionrec(arr,1,n);
 
+    System.out.println(Arrays.toString(arr));
 
 }    
 }
